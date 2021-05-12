@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vaxometer-DataRefresh", "Vaxometer-DataRefresh\Vaxometer-DataRefresh.csproj", "{73BA5643-86B0-4C68-980F-27BA64324783}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{73BA5643-86B0-4C68-980F-27BA64324783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73BA5643-86B0-4C68-980F-27BA64324783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73BA5643-86B0-4C68-980F-27BA64324783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73BA5643-86B0-4C68-980F-27BA64324783}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34AA8437-5D79-4205-82C4-76D6F80EBF21}
+	EndGlobalSection
+EndGlobal

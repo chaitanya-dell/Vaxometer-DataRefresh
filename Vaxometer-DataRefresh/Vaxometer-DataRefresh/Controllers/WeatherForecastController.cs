@@ -23,6 +23,7 @@ namespace Vaxometer_DataRefresh.Controllers
             _logger = logger;
         }
 
+#if debug
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
@@ -35,5 +36,6 @@ namespace Vaxometer_DataRefresh.Controllers
             })
             .ToArray();
         }
+#endif
     }
 }

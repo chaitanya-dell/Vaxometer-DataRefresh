@@ -32,7 +32,15 @@ namespace Vaxometer_DataRefresh
 
             services.Configure<VexoDatabaseSettings>(Configuration.GetSection(nameof(VexoDatabaseSettings)));
             services.AddSingleton<IVexoDatabaseSettings>(x => x.GetRequiredService<IOptions<VexoDatabaseSettings>>().Value);
-           
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Title = "This is the Vaxometer Data Refresh Api",
+                    Version = "v1",
+                    Description = "This is a protected api for data refresh",
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +61,9 @@ namespace Vaxometer_DataRefresh
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "Vaxometer: Powered by Cowin Open API"));
         }
     }
 }

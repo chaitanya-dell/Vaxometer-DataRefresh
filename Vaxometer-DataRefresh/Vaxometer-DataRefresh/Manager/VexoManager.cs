@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Vaxometer_DataRefresh.Models;
+using Vaxometer_DataRefresh.Models.DataModels;
 using Vaxometer_DataRefresh.Repository;
 
 namespace Vaxometer_DataRefresh.Manager
@@ -33,7 +34,7 @@ namespace Vaxometer_DataRefresh.Manager
                 //#if DEBUG
                 //            return true;
                 //#endif
-                // return await _dataRepository.Save(centersData, districtCode);
+                return await _dataRepository.Save(centersData, new  RefreshAuditTrail { district_id = districtCode, district_name = "" });
             }
             catch (Exception ex)
             {

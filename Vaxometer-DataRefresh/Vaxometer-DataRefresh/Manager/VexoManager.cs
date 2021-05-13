@@ -39,69 +39,8 @@ namespace Vaxometer_DataRefresh.Manager
             {
                 _logger.LogError(ex.Message, ex);
             }
+
             return false;
-        }
-
-        public async Task<IEnumerable<Centers>> GetCentersByPinCode(int pincode)
-        {
-            return await _dataRepository.CentersByPinCode(pincode);
-        }
-
-        public async Task<IEnumerable<Centers>> GetCentersByPinCodeAndNearbyPincode(int pincode)
-        {
-            var nearestPinCode = await _cowinRepository.NearestPinCode(pincode);
-            var response = await _dataRepository.CentersByPinCodeAndNearestPinCode(nearestPinCode);
-
-            if (response.FirstOrDefault(x => x.pincode == pincode) == null)
-            {
-                var centersData = await _cowinRepository.GetCentersByPinCode(pincode);
-                if (centersData != null && centersData.Centers != null && centersData.Centers.Any())
-                {
-                    response.AddRange(centersData.Centers);
-                    SavePinCodeCenterData(centersData.Centers.FirstOrDefault(x => x.pincode == pincode)?.district_name);
-                }
-            }
-
-            return response;
-        }
-
-        private async void SavePinCodeCenterData(string districtName)
-        {
-            if (!string.IsNullOrEmpty(districtName))
-            {
-                var response = await _dataRepository.SaveDistrictIdByPinCode(districtName);
-            }
-        }
-
-        public async Task<IEnumerable<Centers>> GetBangaloreCenterFor18yrs()
-        {
-            return await _dataRepository.GetBangaloreCenterFor18yrs();
-        }
-
-        public async Task<IEnumerable<Centers>> GetBangaloreCenterFor45yrs()
-        {
-            return await _dataRepository.GetBangaloreCenterFor45yrs();
-        }
-
-        public async Task<IEnumerable<Centers>> GetBangaloreCenterFor18yrsCovaxin()
-        {
-            return await _dataRepository.GetBangaloreCenterFor18yrsCovaxin();
-        }
-
-
-        public async Task<IEnumerable<Centers>> GetBangaloreCenterFor45yrsCovaxin()
-        {
-            return await _dataRepository.GetBangaloreCenterFor45yrsCovaxin();
-        }
-
-        public async Task<IEnumerable<Centers>> GetBangaloreCenterFor18yrsCoviShield()
-        {
-            return await _dataRepository.GetBangaloreCenterFor18yrsCoviShield();
-        }
-
-        public async Task<IEnumerable<Centers>> GetBangaloreCenterFor45yrsCovishield()
-        {
-            return await _dataRepository.GetBangaloreCenterFor45yrsCovishield();
         }
 
         public async Task<bool> RefreshAllDistricts()
@@ -114,7 +53,8 @@ namespace Vaxometer_DataRefresh.Manager
                 {
                     TimeSpan span = TimeZoneInfo.ConvertTimeToUtc(DateTime.Now).Subtract(district.modified_at);
 
-                    if ((district.status == RefreshDataStatus.Updated && span.TotalMinutes >= 30) || (district.status == RefreshDataStatus.New))
+                    if ((district.status == RefreshDataStatus.Updated && span.TotalMinutes >= 30) ||
+                        (district.status == RefreshDataStatus.New))
                     {
                         var centersData = await _cowinRepository.GetCentersByDistrict(district.district_id);
                         await _dataRepository.Save(centersData, district);
@@ -127,12 +67,9 @@ namespace Vaxometer_DataRefresh.Manager
             {
                 _logger.LogError(ex.Message, ex);
             }
+
             return false;
         }
 
-        public async Task<bool> ValidatePinCode(int pincode)
-        {
-            return await _cowinRepository.ValidatePinCode(pincode);
-        }
     }
 }

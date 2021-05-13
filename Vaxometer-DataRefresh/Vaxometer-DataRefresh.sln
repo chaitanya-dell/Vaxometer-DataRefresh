@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vaxometer-DataRefresh", "Vaxometer-DataRefresh\Vaxometer-DataRefresh.csproj", "{73BA5643-86B0-4C68-980F-27BA64324783}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vaxometer-DataRefresh", "Vaxometer-DataRefresh\Vaxometer-DataRefresh.csproj", "{73BA5643-86B0-4C68-980F-27BA64324783}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vaxometer.Servicebus", "Vaxometer.Servicebus\Vaxometer.Servicebus.csproj", "{A2E7E7B3-8B79-41D8-BCD1-5F5333F8BEFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{73BA5643-86B0-4C68-980F-27BA64324783}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73BA5643-86B0-4C68-980F-27BA64324783}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73BA5643-86B0-4C68-980F-27BA64324783}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2E7E7B3-8B79-41D8-BCD1-5F5333F8BEFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2E7E7B3-8B79-41D8-BCD1-5F5333F8BEFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2E7E7B3-8B79-41D8-BCD1-5F5333F8BEFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2E7E7B3-8B79-41D8-BCD1-5F5333F8BEFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

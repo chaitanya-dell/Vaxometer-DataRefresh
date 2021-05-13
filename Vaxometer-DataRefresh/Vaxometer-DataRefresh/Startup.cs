@@ -11,6 +11,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Vaxometer_DataRefresh.ApplicationSettings;
+using Vaxometer_DataRefresh.IocExtensions;
+using Vaxometer_DataRefresh.Manager;
+using Vaxometer_DataRefresh.Middlewares;
+using Vaxometer_DataRefresh.Repository;
 using Vaxometer_DataRefresh.Repository.DbSettings;
 
 namespace Vaxometer_DataRefresh
@@ -32,6 +37,18 @@ namespace Vaxometer_DataRefresh
 
             services.Configure<VexoDatabaseSettings>(Configuration.GetSection(nameof(VexoDatabaseSettings)));
             services.AddSingleton<IVexoDatabaseSettings>(x => x.GetRequiredService<IOptions<VexoDatabaseSettings>>().Value);
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddHttpContextAccessor();
+            services.AddHttpClient();
+            services.AddOptions();
+            services.AddMemoryCache();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddMongoOperations(Configuration);
+            services.Configure<ApplicationUrls>(Configuration.GetSection(nameof(ApplicationUrls)));
+            services.AddSingleton<IApplicationUrls>(x => x.GetRequiredService<IOptions<ApplicationUrls>>().Value);
+            services.AddScoped<IVexoManager, VexoManager>();
+            services.AddScoped<ICowinRepository, CowinRepository>();
+            services.AddScoped<IDataRepository, DataRepository>();
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
@@ -52,8 +69,8 @@ namespace Vaxometer_DataRefresh
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
+            app.UseGlobalExceptionHandlerMiddleware();
 
             app.UseAuthorization();
 

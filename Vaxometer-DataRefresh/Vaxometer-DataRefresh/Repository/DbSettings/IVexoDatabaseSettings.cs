@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Vaxometer_DataRefresh.Repository.DbSettings
 {
-    public class IVexoDatabaseSettings
+    public interface IVexoDatabaseSettings
     {
         string DatabaseName { get; set; }
         string ConnectionString { get; set; }

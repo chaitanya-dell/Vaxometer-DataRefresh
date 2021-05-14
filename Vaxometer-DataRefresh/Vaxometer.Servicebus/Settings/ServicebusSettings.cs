@@ -8,6 +8,10 @@ namespace Vaxometer.Servicebus.Settings
     {
         public string ConnecionString { get ; set ; }
         public string PrimaryKey { get; set; }
+        public string Endpoint { get; set; }
+        public string EntityPath { get; set; }
+        public string SasKey { get; set; }
+        public string SasKeyName { get; set; }
     }
 }
 

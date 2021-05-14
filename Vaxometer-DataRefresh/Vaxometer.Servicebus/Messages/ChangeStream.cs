@@ -4,11 +4,12 @@ using System.Text;
 
 namespace Vaxometer.Servicebus.Messages
 {
+    [QueueName("changestream/notification")]
     public class ChangeStream
     {
-        public string  CenterId { get; set; }
+        public int CenterId { get; set; }
         public string DistrictName { get; set; }
-        public string PinCode { get; set; }
+        public int PinCode { get; set; }
         public string AvailableSession { get; set; }
     }
 }

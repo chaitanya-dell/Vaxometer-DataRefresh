@@ -17,6 +17,7 @@ using Vaxometer_DataRefresh.Manager;
 using Vaxometer_DataRefresh.Middlewares;
 using Vaxometer_DataRefresh.Repository;
 using Vaxometer_DataRefresh.Repository.DbSettings;
+using Vaxometer.Servicebus.IocExtension;
 
 namespace Vaxometer_DataRefresh
 {
@@ -49,6 +50,10 @@ namespace Vaxometer_DataRefresh
             services.AddScoped<IVexoManager, VexoManager>();
             services.AddScoped<ICowinRepository, CowinRepository>();
             services.AddScoped<IDataRepository, DataRepository>();
+            services.AddScoped<IChangeStreamDataService, ChangeStreamDataService>();
+
+            services.AddServicebus(Configuration);
+
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
@@ -78,7 +83,7 @@ namespace Vaxometer_DataRefresh
             {
                 endpoints.MapControllers();
             });
-
+         
             app.UseSwagger();
             app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "Vaxometer: Powered by Cowin Open API"));
         }

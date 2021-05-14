@@ -7,7 +7,7 @@ namespace Vaxometer.Servicebus.Publishers
 {
     public interface IMessagePublisher
     {
-        Task PublisherAsync<T>(T request);
+         Task PublisherAsync<T>(T request);
     }
 
   

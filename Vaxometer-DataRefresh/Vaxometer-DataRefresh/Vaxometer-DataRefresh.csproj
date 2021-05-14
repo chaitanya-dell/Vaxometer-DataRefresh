@@ -7,8 +7,6 @@
 
   <ItemGroup>
     <Folder Include="ApplicationSettings\" />
-    <Folder Include="Attributes\" />
-    <Folder Include="BackgroundService\" />
     <Folder Include="Manager\" />
     <Folder Include="Middlewares\" />
     <Folder Include="Models\" />
@@ -25,6 +23,9 @@
     <PackageReference Include="MongoDB.Driver" Version="2.11.6" />
     <PackageReference Include="MongoDB.Driver.Core" Version="2.11.6" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Vaxometer.Servicebus\Vaxometer.Servicebus.csproj" />
 	</ItemGroup>
 
 </Project>
